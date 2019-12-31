@@ -17,23 +17,12 @@ int		ft_active_flag(t_data *data, char flag)
 	return (1);
 }
 
-int		ft_state_print(t_data *data)
+int		ft_print_options(t_data *data)
 {
-	int		i;
-	char	const *str;
+	char const	*str;
+	int			i;
 
 	str = data->str;
-	while (ft_in_set("lh", str[data->pos]))
-	{
-		if (str[data->pos] == 'l')
-			data->l_flag++;
-		else
-			data->h_flag++;
-		data->pos++;
-	}
-	if (data->precision >= 0)
-		data->zero_flag = 0;
-
 	i = data->pos;
 	if (str[i] == 'c')
 		return (ft_print_chr(data));
@@ -49,6 +38,24 @@ int		ft_state_print(t_data *data)
 		return (ft_print_ptg(data));
 	else
 		return (str[i] == 0 ? 1 : ft_print_err(data));
+}
+
+int		ft_state_print(t_data *data)
+{
+	char	const *str;
+
+	str = data->str;
+	while (ft_in_set("lh", str[data->pos]))
+	{
+		if (str[data->pos] == 'l')
+			data->l_flag++;
+		else
+			data->h_flag++;
+		data->pos++;
+	}
+	if (data->precision >= 0)
+		data->zero_flag = 0;
+	return (ft_print_options(data));	
 }
 
 int		ft_state_precision(t_data *data)

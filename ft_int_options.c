@@ -8,22 +8,18 @@ char	*ft_width_int(t_data *data, char *str)
 	int		blank_start;
 	int		size;
 
-	ret = malloc(data->width + 1);
-	if (!ret)
+	if (!(ret = malloc(data->width + 1)))
 		return (0);
 	ret[data->width] = 0;
 	size = ft_strlen(str);
+	blank = ' ';
+	str_start = 0;
+	blank_start = size;
 	if (!data->minus_flag)
 	{
 		blank = data->zero_flag ? '0' : ' ';
 		str_start = data->width - size;
 		blank_start = 0;
-	}
-	else
-	{
-		blank = ' ';
-		str_start = 0;
-		blank_start = size;
 	}
 	ft_memset(ret + blank_start, blank, data->width - size);
 	ft_memmove(ret + str_start, str, size);
@@ -80,13 +76,10 @@ char	*ft_check_sign(char *str)
 	return (str);
 }
 
-int		ft_print_int(t_data *data)
+char	*ft_print_int_aux(t_data *data, char **tab_aux)
 {
 	long long int	n;
-	int				size;
-	int				precision;
 	char			*tab;
-	char			*tab_aux;
 
 	data->zero_flag = data->minus_flag ? 0 : data->zero_flag;
 	n = va_arg(g_args, long long int);
@@ -97,33 +90,52 @@ int		ft_print_int(t_data *data)
 	else
 		n = (int)n;
 	if (n < 0)
-		tab_aux = ft_strdup("-");
+		*tab_aux = ft_strdup("-");
 	else if (data->plus_flag || data->blank_flag)
-		tab_aux = data->plus_flag ? ft_strdup("+") : ft_strdup(" ");
+		*tab_aux = data->plus_flag ? ft_strdup("+") : ft_strdup(" ");
 	else
-		tab_aux = ft_strdup("");
+		*tab_aux = ft_strdup("");
 	n *= n < 0 ? -1 : 1;
 	tab = ft_itoa(n);
-	if (!tab)
+	return (tab);	
+}
+
+char	*ft_print_int_aux2(t_data *data, char **tab_aux)
+{
+	char	*tab;
+	int		precision;
+	int		size;
+
+	*tab_aux = 0;
+	if (!(tab = ft_print_int_aux(data, tab_aux)))
 		return (0);
 	precision = data->precision;
 	data->zero_flag = precision >= 0 ? 0 : data->zero_flag;
-	size = ft_strlen(tab);
 	tab = ft_precision_int(data, tab);
 	if (!data->zero_flag)
-	{
-		tab = ft_strjoinfree(tab_aux, tab, 'B');
-		size = ft_strlen(tab);
-	}
+		if (!(tab = ft_strjoinfree(*tab_aux, tab, 'B')))
+			return (0);
+	size = ft_strlen(tab);
 	if (data->width > size)
-	{
 		tab = ft_width_int(data, tab);
-		size = ft_strlen(tab);
-	}
-	if (data->zero_flag)
+	return (tab);
+}
+
+char	*ft_print_int_aux3(t_data *data)
+{
+	int				size;
+	char			*tab;
+	char			*tab_aux;
+
+	tab = ft_print_int_aux2(data, &tab_aux);
+	if (data->zero_flag && tab)
 	{
+		size = ft_strlen(tab);
 		if (data->width < size)
-			tab = ft_strjoinfree(tab_aux, tab, 'B');
+		{
+			if (!(tab = ft_strjoinfree(tab_aux, tab, 'B')))
+				return (0);
+		}
 		else
 		{
 			if (tab[0] == ' ' || (tab[0] == '0' && size > 1))
@@ -135,7 +147,18 @@ int		ft_print_int(t_data *data)
 				tab = ft_strjoinfree(tab_aux, tab, 'B');
 		}
 	}
-	tab = ft_check_sign(tab);
+	return (tab);
+}
+
+int		ft_print_int(t_data *data)
+{
+	int				size;
+	char			*tab;
+
+	if (!(tab = ft_print_int_aux3(data)))
+		return (0);
+	if (!(tab = ft_check_sign(tab)))
+		return (0);
 	size = ft_strlen(tab);
 	data->pos++;
 	return (ft_save(data, tab, size));

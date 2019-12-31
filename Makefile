@@ -42,7 +42,7 @@ SRC=ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c ft_strndup.c ft_strjoinfr
 		 ft_in_set.c ft_dgts.c ft_dgts_base.c ft_itoa_base.c ft_itoa_unsigned.c \
 		 ft_printnchr.c \
 		 data_management.c ft_printf.c ft_printf_states.c ft_uns_options.c \
-		 ft_int_options.c ft_chr_options.c ft_extra_options.c
+		 ft_int_options.c ft_chr_options.c ft_extra_options.c ft_uns_options2.c
 
 OBJ=$(SRC:.c=.o)
 

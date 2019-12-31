@@ -38,6 +38,8 @@ typedef struct	s_data
 	char		*set_types;
 }				t_data;
 
+int				ft_printf(const char *str, ...);
+
 int				ft_state_print(t_data *data);
 int				ft_state_precision(t_data *data);
 int				ft_state_width(t_data *data);
