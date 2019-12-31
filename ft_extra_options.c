@@ -1,4 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_extra_options.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eherrero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/31 14:00:06 by eherrero          #+#    #+#             */
+/*   Updated: 2019/12/31 14:32:53 by eherrero         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
+
+int		ft_active_flag(t_data *data, char flag)
+{
+	if (flag == '-')
+		data->minus_flag = 1;
+	else if (flag == '0')
+		data->zero_flag = 1;
+	else if (flag == '+')
+		data->plus_flag = 1;
+	else if (flag == ' ')
+		data->blank_flag = 1;
+	else if (flag == '#')
+		data->hash_flag = 1;
+	else
+		return (0);
+	return (1);
+}
 
 int		ft_print_ptg(t_data *data)
 {
@@ -9,7 +38,7 @@ int		ft_print_ptg(t_data *data)
 
 	chr = '%';
 	blank = data->zero_flag && !data->minus_flag ? '0' : ' ';
-	if(data->width <= 1)
+	if (data->width <= 1)
 	{
 		tab = malloc(1);
 		if (!tab)

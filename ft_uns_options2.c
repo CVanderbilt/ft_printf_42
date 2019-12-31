@@ -1,15 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_uns_options2.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eherrero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/31 14:12:56 by eherrero          #+#    #+#             */
+/*   Updated: 2019/12/31 14:22:15 by eherrero         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-char			*ft_check_prefix(t_data *data, char *str, char *prefix)
+char	*ft_check_prefix(t_data *data, char *s, char *pref)
 {
-	if (!prefix)
-		return (str);
-	if (data->actual_type == 'o' && str[0] == '0')
-		return (str);
-	return (ft_arraynjoinfreeR(prefix, str, ft_strlen(prefix), ft_strlen(str) + 1));
+	if (!pref)
+		return (s);
+	if (data->actual_type == 'o' && s[0] == '0')
+		return (s);
+	return (ft_arraynjoinfree_r(pref, s, ft_strlen(pref), ft_strlen(s) + 1));
 }
 
-char			*ft_check_prefix_mod(char *str)
+char	*ft_check_prefix_mod(char *str)
 {
 	int i;
 	int zero_pos;
@@ -32,7 +44,7 @@ char			*ft_check_prefix_mod(char *str)
 	return (str);
 }
 
-char				*ft_prefix_select(t_data *data, char type, unsigned long long int n)
+char	*ft_prefix_select(t_data *data, char type, unsigned long long int n)
 {
 	if (type == 'p')
 		return (ft_strdup("0x"));

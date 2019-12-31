@@ -1,22 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_get_pos.c                                       :+:      :+:    :+:   */
+/*   ft_arraynjoinfree_l.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eherrero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/12/18 16:20:26 by eherrero          #+#    #+#             */
-/*   Updated: 2019/12/31 13:59:56 by eherrero         ###   ########.fr       */
+/*   Created: 2019/12/31 13:54:54 by eherrero          #+#    #+#             */
+/*   Updated: 2019/12/31 13:56:54 by eherrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_get_pos(char *str, char c)
-{
-	int i;
+#include "libft.h"
 
-	i = -1;
-	while (str[++i])
-		if (str[i] == c)
-			return (i);
-	return (-1);
+void	*ft_arraynjoinfree_l(void *s1, void *s2, int n1, int n2)
+{
+	char	*ret;
+
+	ret = ft_arraynjoin(s1, s2, n1, n2);
+	if (!ret)
+		return (0);
+	free(s1);
+	return (ret);
 }

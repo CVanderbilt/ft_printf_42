@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   data_management.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eherrero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/31 13:50:32 by eherrero          #+#    #+#             */
+/*   Updated: 2019/12/31 13:51:40 by eherrero         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		ft_save_chr(t_data *data, char c)
 {
-	char *tmp;
-	int i;
+	char	*tmp;
+	int		i;
 
-	if(!(tmp = malloc(data->size + 1)))
+	if (!(tmp = malloc(data->size + 1)))
 		return (0);
 	i = -1;
 	while (++i < data->size)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eherrero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/31 14:05:31 by eherrero          #+#    #+#             */
+/*   Updated: 2019/12/31 14:33:05 by eherrero         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 int		ft_printf(const char *str, ...)
@@ -5,7 +17,7 @@ int		ft_printf(const char *str, ...)
 	t_data	data;
 
 	ft_data_init(&data, str);
-	va_start (g_args, str);
+	va_start(g_args, str);
 	while (str[data.pos])
 	{
 		if (str[data.pos] == '%')

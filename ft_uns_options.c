@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_uns_options.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eherrero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/31 14:13:44 by eherrero          #+#    #+#             */
+/*   Updated: 2019/12/31 14:42:43 by eherrero         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 unsigned long long	ft_mod_size_uns(t_data *data, unsigned long long int n)
@@ -31,7 +43,7 @@ char				*ft_translate(unsigned long long int n, char type)
 	return (ret);
 }
 
-char				*ft_print_uns_aux(t_data * data)
+char				*ft_print_uns_aux(t_data *data)
 {
 	unsigned long long int	n;
 	int						precision;

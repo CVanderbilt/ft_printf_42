@@ -1,21 +1,16 @@
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf_states.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eherrero <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/31 14:11:09 by eherrero          #+#    #+#             */
+/*   Updated: 2019/12/31 14:21:35 by eherrero         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int		ft_active_flag(t_data *data, char flag)
-{
-	if (flag == '-')
-		data->minus_flag = 1;
-	else if (flag == '0')
-		data->zero_flag = 1;
-	else if (flag == '+')
-		data->plus_flag = 1;
-	else if (flag == ' ')
-		data->blank_flag = 1;
-	else if (flag == '#')
-		data->hash_flag = 1;
-	else
-		return (0);
-	return (1);
-}
+#include "ft_printf.h"
 
 int		ft_print_options(t_data *data)
 {
@@ -55,7 +50,7 @@ int		ft_state_print(t_data *data)
 	}
 	if (data->precision >= 0)
 		data->zero_flag = 0;
-	return (ft_print_options(data));	
+	return (ft_print_options(data));
 }
 
 int		ft_state_precision(t_data *data)
@@ -86,7 +81,7 @@ int		ft_state_precision(t_data *data)
 
 int		ft_state_width(t_data *data)
 {
-	int		i;
+	int			i;
 	const char	*str;
 
 	i = data->pos;
@@ -112,9 +107,9 @@ int		ft_state_width(t_data *data)
 
 int		ft_state_flags(t_data *data)
 {
-	int		i;
+	int			i;
 	const char	*str;
-	char	*set;
+	char		*set;
 
 	set = data->set_flags;
 	str = data->str;
@@ -126,7 +121,7 @@ int		ft_state_flags(t_data *data)
 		if (str[i] == '*' || ft_isdigit(str[i]))
 			return (ft_state_width(data));
 		return (str[i] == 0 ? 1 : ft_state_print(data));
-	}	
+	}
 	data->pos++;
 	return (ft_state_flags(data));
 }

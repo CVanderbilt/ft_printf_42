@@ -6,7 +6,7 @@
 /*   By: eherrero <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 17:44:33 by eherrero          #+#    #+#             */
-/*   Updated: 2019/12/18 16:22:22 by eherrero         ###   ########.fr       */
+/*   Updated: 2019/12/31 14:16:26 by eherrero         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,8 @@ void			*ft_memmove(void *dest, const void *src, size_t n);
 void			*ft_memset(void *str, int c, size_t n);
 void			*ft_arraynjoin(const void *s1, const void *s2, int n1, int n2);
 void			*ft_arraynjoinfree(void *s1, void *s2, int n1, int n2);
-void			*ft_arraynjoinfreeL(void *s1, void *s2, int n1, int n2);
-void			*ft_arraynjoinfreeR(void *s1, void *s2, int n1, int n2);
+void			*ft_arraynjoinfree_l(void *s1, void *s2, int n1, int n2);
+void			*ft_arraynjoinfree_r(void *s1, void *s2, int n1, int n2);
 void			ft_bzero(void *s, size_t n);
 void			ft_putchar_fd(char c, int fd);
 void			ft_putendl_fd(char *s, int fd);
